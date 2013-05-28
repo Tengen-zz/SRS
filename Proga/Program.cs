@@ -7,7 +7,7 @@ namespace integral
 {
     class Program
     {
-        static double integsqrt(double a,double b)
+        static double integsqrt(double a, double b)
         {
             double s1, s2;
             s1 = (a / 2) * Math.Sqrt(a * a + 1) + 0.5 * Math.Log(a + Math.Sqrt(a * a + 1));
@@ -27,14 +27,27 @@ namespace integral
                     }
             return 0;
         }
+        static void reverse(int[] w, int l)
+        {
+            int t;
+            for (int i = 0; i < l / 2; i++)
+            {
+                t = w[i];
+                w[i] = w[l - i - 1];
+                w[l - i - 1] = t;
+            }
+        }
         static void Main(string[] args)
         {
+            //Первое задание - расчет интеграла
             double a;
             a = integsqrt(1, -1);
             Console.WriteLine("Значение интеграла: " + a);
-            Console.WriteLine("Введите количество элементов массива:");
-            int n=Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("\n");
+            Console.Write("\n");
+            //Второе задание - сортировка массива
+            Console.Write("Введите количество элементов массива: ");
+            int n = Convert.ToInt32(Console.ReadLine());
+            Console.Write("\n");
             double[] a1 = new double[n];
             for (int i = 0; i < n; i++)
             {
@@ -44,9 +57,27 @@ namespace integral
             Console.WriteLine("\nМассив:");
             for (int i = 0; i < n; i++)
             {
-                Console.WriteLine(a1[i] + " ");         
+                Console.WriteLine(a1[i] + " ");
             }
+            // третье задание записать массив задом наперед
+            Console.WriteLine("\n");
+            int l;
+            Console.Write("Введите количество элементов массива: ");
+            l = Convert.ToInt32(Console.ReadLine());
+            Console.Write("\n");
+            int[] w = new int[l];
+            for (int i = 0; i < l; i++)
+                w[i] = Convert.ToInt32(Console.ReadLine());
+            reverse(w, l);
+            Console.WriteLine("\nМассив:");
+            for (int i = 0; i < l; i++)
+                Console.Write(w[i] + " ");
+
         }
-        }
+
+
+
     }
+}
+    
 
