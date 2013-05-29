@@ -10,8 +10,8 @@ namespace integral
         static double integsqrt(double a, double b)
         {
             double s1, s2;
-            s1 = (a / 2) * Math.Sqrt(a * a + 1) + 0.5 * Math.Log(a + Math.Sqrt(a * a + 1));
-            s2 = (b / 2) * Math.Sqrt(b * b + 1) + 0.5 * Math.Log(b + Math.Sqrt(b * b + 1));
+            s1 = (a / 2) * Math.Sqrt(1 - a * a) + 0.5 * Math.Asin(a);
+            s2 = (b / 2) * Math.Sqrt(1 - b * b) + 0.5 * Math.Asin(b);
             return s1 - s2;
         }
         static double sortirovka(double[] a, double n)
@@ -27,27 +27,33 @@ namespace integral
                     }
             return 0;
         }
-        static void reverse(int[] w, int l)
+        static string reverse(string str)
         {
-            int t;
-            for (int i = 0; i < l / 2; i++)
+            char[] dop;
+            char simv;
+            int i;
+            dop = str.ToCharArray();
+            for (i = 0; i < (dop.Length / 2); i++)
             {
-                t = w[i];
-                w[i] = w[l - i - 1];
-                w[l - i - 1] = t;
+                simv = dop[i];
+                dop[i] = dop[dop.Length - i - 1];
+                dop[dop.Length - i - 1] = simv;
+
             }
+            str = new string(dop);
+            return str;
         }
         static void Main(string[] args)
         {
             //Первое задание - расчет интеграла
             double a;
             a = integsqrt(1, -1);
-            Console.WriteLine("Значение интеграла: " + a);
-            Console.Write("\n");
+            Console.WriteLine("Первая Задача Значение интеграла: " + a);
+            Console.Write("\n\n\nВторая задача\n");
             //Второе задание - сортировка массива
             Console.Write("Введите количество элементов массива: ");
             int n = Convert.ToInt32(Console.ReadLine());
-            Console.Write("\n");
+            Console.Write("Введите элементы массива(по одному элементу в каждой строке)\n");
             double[] a1 = new double[n];
             for (int i = 0; i < n; i++)
             {
@@ -60,19 +66,14 @@ namespace integral
                 Console.WriteLine(a1[i] + " ");
             }
             // третье задание записать массив задом наперед
-            Console.WriteLine("\n");
+            Console.WriteLine("\n\n\nТретья задача\n");
             int l;
-            Console.Write("Введите количество элементов массива: ");
-            l = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Введите строку:\n ");
             Console.Write("\n");
-            int[] w = new int[l];
-            for (int i = 0; i < l; i++)
-                w[i] = Convert.ToInt32(Console.ReadLine());
-            reverse(w, l);
-            Console.WriteLine("\nМассив:");
-            for (int i = 0; i < l; i++)
-                Console.Write(w[i] + " ");
-
+            string s = Console.ReadLine();
+            s=reverse(s);
+            Console.WriteLine("\nПеревернутая строка: " + s);
+            
         }
 
 
