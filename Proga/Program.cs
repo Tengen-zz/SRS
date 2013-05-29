@@ -7,6 +7,27 @@ namespace integral
 {
     class Program
     {
+        static int prost(int a)
+        {
+            int[] b = new int[10000];
+            b[0] = 2;
+            b[1] = 3;
+            b[2] = 5;
+            int k = 3;
+            int t = 0;
+            while (b[k - 1] <= a)
+            {
+                for (int i = b[k - 1] + 1; true; i++)
+                {
+                    t = 0;
+                    for (int j = 0; j < k; j++)
+                        if (i % b[j] == 0) { t = 1; break; }
+                    if (t != 1) { b[k] = i; k++; break; }
+                }
+            }
+            return b[k - 1];
+        }
+
         static double integsqrt(double a, double b)
         {
             double s1, s2;
@@ -72,7 +93,18 @@ namespace integral
             Console.Write("\n");
             string s = Console.ReadLine();
             s=reverse(s);
-            Console.WriteLine("\nПеревернутая строка: " + s);
+            Console.WriteLine("\nПеревернутая строка: " + s );
+
+            //четвертое задание
+            Console.WriteLine("\n\n\nЧетвертая задача\n");
+            int k;
+            int r;
+            Console.WriteLine("Введите ваше натуральное число..");
+            k = Convert.ToInt32(Console.ReadLine());
+            r = prost(k);
+            Console.Write("Первое простое число больше вашего равно=");
+            Console.Write(r);
+            Console.WriteLine();
             
         }
 
